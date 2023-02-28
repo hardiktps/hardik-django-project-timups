@@ -1,0 +1,68 @@
+{% extends 'header.html' %} 
+{% block content %} 
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+
+</head>
+
+<body>
+
+  <section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+        Watch
+        </h2>
+      </div>
+      <div class="row">
+        
+        <div class="col-md-6 ">
+          <div class="box">
+            
+              <div class="img-box">
+                <img src="{{product.product_pic.url}}" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  Name : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{product.product_name}}<br>
+                  Category : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{product.product_category}}<br>
+                  Price : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ₹ {{product.product_price}}<br>
+                  Description :&nbsp;&nbsp;{{product.product_desc}}
+                  
+                </h6>               
+              </div>
+            </a>
+          </div>
+          {% if request.session.email %}
+            {% if wishlist_flag == True %}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'remove_from_wishlist' pk=product.pk %}"><input type="button" value="Remove From Wishlist" class="btn btn-danger"></a>
+            {% else %}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'add_to_wishlist' pk=product.pk %}"><input type="button" value="Add To Wishlist" class="btn btn-primary"></a>
+            {% endif %}
+          
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         
+          {% if cart_flag == True %}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="{% url 'remove_from_cart' pk=product.pk %}"><input type="button" value="Remove From Cart" class="btn btn-danger"></a>
+          {% else %}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="{% url 'add_to_cart' pk=product.pk %}"><input type="button" value="Add To Cart" class="btn btn-primary"></a>
+          {% endif %}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {% else %}
+          <a href="{% url 'login' %}"><input type="button" value="Login" class="btn btn-danger"></a>
+          {% endif %}
+        </div>       
+    </div>
+  </section>
+</body>
+</html>
+
+{% endblock %} 

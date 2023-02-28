@@ -1,0 +1,102 @@
+{% extends 'header.html' %} 
+{% block content %} 
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+
+  <title>Timups</title>
+
+
+  
+
+</head>
+
+  <!-- contact section -->
+
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+            <div class="heading_container">
+              <h2>
+                Sign Up
+              </h2>
+            </div>
+            {% if msg %}
+              <b style="color: #f0d43a">{{msg}}</b>
+            {% endif %}
+            <form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div>
+                <select name="usertype" style="width: 555px; height: 50px;">
+                  <option>&nbsp;&nbsp;&nbsp;Select User</option>
+                  <option value="buyer">&nbsp;&nbsp;&nbsp;Buyer</option>
+                  <option value="seller">&nbsp;&nbsp;&nbsp;Seller</option>
+                </select>
+              </div>
+              <br>
+              <div>
+                <input type="text" placeholder="First Name " name="fname" required/>
+              </div>
+              <div>
+                <input type="text" placeholder="Last Name " name="lname" required />
+              </div>
+              <div>
+                <input type="email" placeholder="Email" name="email" required/>
+              </div>
+              <div>
+                <input type="text" placeholder="Phone number" name="mobile" required/>
+              </div>
+              <div>
+                <input type="text" class="message-box" placeholder="Address" name="address" required/>
+              </div>
+              <div>
+                <input type="password"  placeholder="Password" name="password" required/>
+              </div>
+              <div>
+                <input type="password" placeholder="Confirm Password" name="cpassword" required/>
+              </div>
+              <div>
+                <input type="file"  placeholder="Password" name="profile_pic" style="padding:9px ;" required/>
+              </div>
+             
+              <div class="d-flex ">
+                  <button>
+                  Sign Up
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="img-box">
+            <img src="{% static 'images/contact-img.jpg' %}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- end contact section -->
+  
+
+</body>
+
+</html>
+
+{% endblock %} 

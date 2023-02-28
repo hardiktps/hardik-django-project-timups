@@ -1,0 +1,52 @@
+{% extends 'seller_header.html' %} 
+{% block content %} 
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+
+</head>
+
+<body>
+
+  <section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+        Watch
+        </h2>
+      </div>
+      <div class="row">
+        
+        <div class="col-md-5 ">
+          <div class="box">
+            <a href="{% url 'seller_product_detail' pk=product.pk %}">
+              <div class="img-box">
+                <img src="{{product.product_pic.url}}" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  Name : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{product.product_name}}<br>
+                  Category : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{product.product_category}}<br>
+                  Price : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ₹ {{product.product_price}}<br>
+                  Description :&nbsp;&nbsp;{{product.product_desc}}
+                  
+                </h6>               
+              </div>
+            </a>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="{% url 'seller_edit_product' pk=product.pk %}"><input type="button" value="Edit" class="btn btn-primary"></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         
+          <a href="{% url 'seller_delete_product' pk=product.pk %}"><input type="button" value="Delete" class="btn btn-danger"></a>
+        </div>       
+    </div>
+  </section>
+</body>
+</html>
+
+{% endblock %} 

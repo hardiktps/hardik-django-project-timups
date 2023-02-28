@@ -1,0 +1,53 @@
+{% extends 'seller_header.html' %} 
+{% block content %} 
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+
+</head>
+
+<body>
+
+  <section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+        Watches
+        </h2>
+      </div>
+      <div class="row">
+        {% for i in products %}
+        <div class="col-md-3 ">
+          <div class="box">
+            <a href="{% url 'seller_product_detail' pk=i.pk%}">
+              <div class="img-box">
+                <img src="{{i.product_pic.url}}" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  {{i.product_name}}
+                </h6>
+                <h6>
+                    ₹:
+                  <span>
+                    {{i.product_price}}
+                  </span>
+                </h6>
+              </div>
+             
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+    </div>
+  </section>
+</body>
+</html>
+
+{% endblock %} 

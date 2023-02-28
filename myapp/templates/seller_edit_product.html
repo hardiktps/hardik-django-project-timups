@@ -1,0 +1,113 @@
+{% extends 'seller_header.html' %} 
+{% block content %} 
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+
+  <title>Timups</title>
+
+
+  
+
+</head>
+
+  <!-- contact section -->
+
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+            <div class="heading_container">
+              <h2>
+                Edit Product
+              </h2>
+            </div>
+            {% if msg %}
+              <b style="color: #f0d43a">{{msg}}</b>
+            {% endif %}
+            <form action="{% url 'seller_edit_product' pk=product.pk %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div>
+                <select name="product_category" style="width: 555px; height: 50px;">
+                {% if product.product_category == 'men' %}
+                <option>&nbsp;&nbsp;&nbsp;Select Category</option>
+                <option value="men" selected>&nbsp;&nbsp;&nbsp;Men</option>
+                <option value="women">&nbsp;&nbsp;&nbsp;Women</option>
+                <option value="kids">&nbsp;&nbsp;&nbsp;Kids</option>
+                {% elif product.product_category == 'women' %}
+                <option>&nbsp;&nbsp;&nbsp;Select Category</option>
+                <option value="men">&nbsp;&nbsp;&nbsp;Men</option>
+                <option value="women" selected>&nbsp;&nbsp;&nbsp;Women</option>
+                <option value="kids">&nbsp;&nbsp;&nbsp;Kids</option>    
+                {% elif product.product_category == 'kids' %}
+                <option>&nbsp;&nbsp;&nbsp;Select Category</option>
+                <option value="men">&nbsp;&nbsp;&nbsp;Men</option>
+                <option value="women">&nbsp;&nbsp;&nbsp;Women</option>
+                <option value="kids" selected>&nbsp;&nbsp;&nbsp;Kids</option>
+                {% else %}
+                <option>&nbsp;&nbsp;&nbsp;Select Category</option>
+                <option value="men">&nbsp;&nbsp;&nbsp;Men</option>
+                <option value="women">&nbsp;&nbsp;&nbsp;Women</option>
+                <option value="kids">&nbsp;&nbsp;&nbsp;Kids</option>    
+                {% endif %}                                     
+                </select>
+              </div>
+              <br>
+              <div>
+                <input type="text" placeholder="Product Name " name="product_name" value="{{product.product_name}}"/>
+              </div>
+              <div>
+                <input type="text" placeholder="Product Price " name="product_price" value="{{product.product_price}}" />
+              </div>          
+              <div>
+                <input type="text" class="message-box" placeholder="Product Description" name="product_desc" value="{{product.product_desc}}"/>
+              </div>
+              
+              <div>
+                <img src="{{product.product_pic.url}}" width="60px" height="100px">
+              </div>
+
+              <div>
+                <input type="file" name="product_pic" style="padding: 9px;"/>
+              </div>
+             
+              <div class="d-flex ">
+                  <button>
+                  Update Product
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="img-box">
+            <img src="{% static 'images/contact-img.jpg' %}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- end contact section -->
+  
+
+</body>
+
+</html>
+
+{% endblock %} 
